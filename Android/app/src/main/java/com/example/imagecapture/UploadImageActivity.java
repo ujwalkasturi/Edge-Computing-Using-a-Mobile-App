@@ -12,6 +12,7 @@ import android.graphics.Matrix;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.view.View;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
@@ -116,35 +118,8 @@ public class UploadImageActivity extends AppCompatActivity{
             }
         }
 
-//        float confidence=-1;
-//        int num = -1;
-//        for(int i=0; i<2;i++)
-//        {
-//            res=callServer(links[i],i);
-//            float val = Float.parseFloat(res.split(",")[0]);
-//            if(val>confidence)
-//            {
-//                confidence=val;
-//                num = Integer.parseInt(res.split(",")[1]);
-//            }
-//        }
-
-
         imageCategory=String.valueOf(num);
 
-
-//        capturedImage.setImageBitmap(topRightImageBitMap);
-//        capturedImage.setImageURI(capturedImageUri);
-        //Conversion of bitmap to byte array to send it to server
-
-//        InputStream iStream = null;
-//        try {
-//            iStream = getContentResolver().openInputStream(capturedImageUri);
-//            byteArray = getBytes(iStream);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        callServer();
         progressBar.setVisibility(View.GONE);
         if(imageCategory != null){
             String text = "Predicted Value:- "+ imageCategory;
@@ -152,6 +127,25 @@ public class UploadImageActivity extends AppCompatActivity{
             description.setTypeface(null, Typeface.BOLD);
         }
         description.setVisibility(View.VISIBLE);
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/MC/"+num+"/");
+        if (!storageDir.exists())
+            storageDir.mkdirs();
+        try {
+            File image = File.createTempFile(
+                    timeStamp,                   /* prefix */
+                    ".jpeg",                     /* suffix */
+                    storageDir                   /* directory */
+            );
+            FileOutputStream out = new FileOutputStream(image);
+            imageBitMap = rotateImage(imageBitMap, -90);
+            imageBitMap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
     private Bitmap rotateImage(Bitmap source, float angle) {
