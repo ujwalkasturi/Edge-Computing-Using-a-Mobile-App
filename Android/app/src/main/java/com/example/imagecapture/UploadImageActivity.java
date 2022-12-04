@@ -47,11 +47,13 @@ import okhttp3.Response;
 public class UploadImageActivity extends AppCompatActivity{
 
     private Spinner spinner;
-    private ImageView capturedImage;
+    private ImageView image1, image2, image3, image4;
     private TextView description;
-    ProgressBar progressBar;
+    private ProgressBar progressBar;
+    private Button uploadButton;
     String imageCategory;
-    Uri capturedImageUri;
+    Uri capturedImageUri, topLeftImageUri, bottomLeftImageUri, topRightImageUri, bottomRightImageUri;
+    Bitmap imageBitMap;
     byte[] byteArray;
 
     @SuppressLint("WrongThread")
@@ -63,91 +65,52 @@ public class UploadImageActivity extends AppCompatActivity{
         StrictMode.setThreadPolicy(policy);
 
         setContentView(R.layout.activity_upload_image);
-        capturedImage = findViewById(R.id.imageViewUpload);
+        image1 = findViewById(R.id.imageViewUpload1);
+        image2 = findViewById(R.id.imageViewUpload2);
+        image3 = findViewById(R.id.imageViewUpload3);
+        image4 = findViewById(R.id.imageViewUpload4);
         description = findViewById(R.id.descriptionText);
         progressBar = findViewById(R.id.progressBar);
+        uploadButton = findViewById(R.id.uploadButton);
 
 
-        Bitmap imageBitMap = null;
         Bitmap topLeftImageBitMap = null, bottomLeftImageBitMap = null, topRightImageBitMap = null, bottomRightImageBitMap = null;
-        Uri topLeftImageUri = null, bottomLeftImageUri = null, topRightImageUri = null, bottomRightImageUri = null;
         Bundle extras = getIntent().getExtras();
-
         if (extras != null && extras.containsKey("capturedImageUri") && extras.containsKey("capturedImageBitMap")
                 && extras.containsKey("capturedImagePath")) {
             capturedImageUri = extras.getParcelable("capturedImageUri");
             try {
                 imageBitMap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), capturedImageUri);
-                imageBitMap = rotateImage(imageBitMap, 90);
+//                imageBitMap = rotateImage(imageBitMap, 90);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 //            imageBitMap = (Bitmap) extras.getParcelable("capturedImageBitMap");
             topLeftImageBitMap = Bitmap.createBitmap(imageBitMap, 0, 0, imageBitMap.getWidth()/2, imageBitMap.getHeight()/2);
-            topLeftImageBitMap=rotateImage(topLeftImageBitMap,-90);
             topLeftImageUri = getImageUri(this.getContentResolver(), topLeftImageBitMap, "topLeftImageBitMap");
             bottomLeftImageBitMap = Bitmap.createBitmap(imageBitMap, 0, imageBitMap.getHeight()/2, imageBitMap.getWidth()/2, imageBitMap.getHeight()/2);
-            bottomLeftImageBitMap=rotateImage(bottomLeftImageBitMap,-90);
             bottomLeftImageUri = getImageUri(this.getContentResolver(), bottomLeftImageBitMap, "bottomLeftImageBitMap");
             topRightImageBitMap = Bitmap.createBitmap(imageBitMap, imageBitMap.getWidth()/2, 0, imageBitMap.getWidth()/2, imageBitMap.getHeight()/2);
-            topRightImageBitMap=rotateImage(topRightImageBitMap,-90);
             topRightImageUri = getImageUri(this.getContentResolver(), topRightImageBitMap, "topRightImageBitMap");
             bottomRightImageBitMap = Bitmap.createBitmap(imageBitMap, imageBitMap.getWidth()/2, imageBitMap.getHeight()/2, imageBitMap.getWidth()/2, imageBitMap.getHeight()/2);
-            bottomRightImageBitMap=rotateImage(bottomRightImageBitMap,-90);
             bottomRightImageUri = getImageUri(this.getContentResolver(), bottomRightImageBitMap, "bottomRightImageBitMap");
         }
-
-
-
-        String[] res = new String[4];
-        String[] links = {"http://192.168.0.106:5000/","http://192.168.0.106:5000/","http://192.168.0.106:5000/","http://192.168.0.106:5000/"};
-
-        res[0] = callServer(topLeftImageUri,links[0]);
-        res[1] = callServer(bottomLeftImageUri,links[1]);
-        res[2] = callServer(topRightImageUri,links[2]);
-        res[3] = callServer(bottomRightImageUri,links[3]);
-        float confidence=-1;
-        int num = -1;
-        for(String line:res)
-        {
-            float val = Float.parseFloat(line.split(",")[0]);
-            if(val>confidence)
-            {
-                confidence=val;
-                num = Integer.parseInt(line.split(",")[1]);
+        image1.setImageURI(topLeftImageUri);
+        image2.setImageURI(topRightImageUri);
+        image3.setImageURI(bottomLeftImageUri);
+        image4.setImageURI(bottomRightImageUri);
+        uploadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                preparePostRequest();
             }
-        }
-
-        imageCategory=String.valueOf(num);
-
-        progressBar.setVisibility(View.GONE);
-        if(imageCategory != null){
-            String text = "Predicted Value:- "+ imageCategory;
-            description.setText(text);
-            description.setTypeface(null, Typeface.BOLD);
-        }
-        description.setVisibility(View.VISIBLE);
-
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/MC/"+num+"/");
-        if (!storageDir.exists())
-            storageDir.mkdirs();
-        try {
-            File image = File.createTempFile(
-                    timeStamp,                   /* prefix */
-                    ".jpeg",                     /* suffix */
-                    storageDir                   /* directory */
-            );
-            FileOutputStream out = new FileOutputStream(image);
-            imageBitMap = rotateImage(imageBitMap, -90);
-            imageBitMap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-            out.flush();
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        });
+//        capturedImage.setImageBitmap(topRightImageBitMap);
+//        capturedImage.setImageURI(capturedImageUri);
+        //Conversion of bitmap to byte array to send it to server
 
     }
+
     private Bitmap rotateImage(Bitmap source, float angle) {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
@@ -163,9 +126,59 @@ public class UploadImageActivity extends AppCompatActivity{
         return Uri.parse(path);
     }
 
+    private void preparePostRequest(){
+        progressBar.setVisibility(View.VISIBLE);
+        String[] res = new String[4];
+        String[] links = {"http://192.168.0.106:5000/","http://192.168.0.252:5000/","http://192.168.0.106:5000/","http://192.168.0.252:5000/"};
+        res[0] = callServer(topLeftImageUri,links[0]);
+        res[1] = callServer(bottomLeftImageUri,links[1]);
+        res[2] = callServer(topRightImageUri,links[2]);
+        res[3] = callServer(bottomRightImageUri,links[3]);
+        float confidence=-1;
+        int num = -1;
+        for(String line:res)
+        {
+            float val = Float.parseFloat(line.split(",")[0]);
+            if(val>confidence)
+            {
+                confidence=val;
+                num = Integer.parseInt(line.split(",")[1]);
+            }
+        }
+        imageCategory=String.valueOf(num);
+        if(imageCategory != null){
+            String text = "Predicted Value:- "+ imageCategory;
+            description.setText(text);
+            description.setTypeface(null, Typeface.BOLD);
+        }
+        progressBar.setVisibility(View.GONE);
+        uploadButton.setVisibility(View.GONE);
+        description.setVisibility(View.VISIBLE);
+        storeImage(num);
+    }
+
+    private void storeImage(int num){
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/MC/"+num+"/");
+        if (!storageDir.exists())
+            storageDir.mkdirs();
+        try {
+            File image = File.createTempFile(
+                    timeStamp,                   /* prefix */
+                    ".jpeg",                     /* suffix */
+                    storageDir                   /* directory */
+            );
+            FileOutputStream out = new FileOutputStream(image);
+            imageBitMap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private String callServer(Uri ImageUri, String url){
 
-        InputStream iStream = null;
+        InputStream iStream;
         try {
             iStream = getContentResolver().openInputStream(ImageUri);
             byteArray = getBytes(iStream);
@@ -183,7 +196,7 @@ public class UploadImageActivity extends AppCompatActivity{
         Request request = new Request.Builder().url(url).post(formBody).build();
 
         Call call = client.newCall(request);
-        Response response = null;
+        Response response;
         try {
             response = call.execute();
             imageCategory = response.body().string();
@@ -192,8 +205,7 @@ public class UploadImageActivity extends AppCompatActivity{
         }
 
         System.out.println("Category Selected: "+ imageCategory);
-        capturedImage.setImageURI(ImageUri);
-        testMethod(imageCategory);
+//        testMethod(imageCategory);
         return imageCategory;
     }
 
