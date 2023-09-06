@@ -1,0 +1,19 @@
+<lint-module
+    format="1"
+    dir="C:\Personal\University\Sem-1\Mobile_computing\Project1\Clone\MobileComputing\Android\app"
+    name=":app"
+    type="APP"
+    maven="ImageCapture:app:"
+    gradle="7.2.2"
+    buildFolder="build"
+    bootClassPath="C:\Users\ujwal\AppData\Local\Android\Sdk\platforms\android-32\android.jar;C:\Users\ujwal\AppData\Local\Android\Sdk\build-tools\30.0.3\core-lambda-stubs.jar"
+    javaSourceLevel="1.8"
+    compileTarget="android-32"
+    neverShrinking="true">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="debug"/>
+</lint-module>

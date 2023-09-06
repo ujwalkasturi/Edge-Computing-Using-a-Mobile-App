@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 7.2.2" type="partial_results">
+    <map id="UnusedResources">
+        <entry
+            name="model"
+            string="attr[colorPrimaryVariant(R)],color[purple_200(U),black(U),teal_200(U),white(U),teal_700(U),purple_700(U),purple_500(U)],drawable[ic_launcher_foreground(U),ic_launcher_background(U),ic_launcher_foreground_1(R)],id[nobutton(U),imageViewUpload(U),imageView(U),categoryButton(U),yesButton(U),categories(U),textView(U),uploadButton(U)],layout[activity_main(U),activity_upload_image(U)],mipmap[ic_launcher_round(U),ic_launcher(U)],string[no(U),yes(U),do_you_want_to_capture_an_image(U),app_name(U)],style[Theme_MaterialComponents_DayNight_DarkActionBar(R),Theme_ImageCapture(U)],xml[network_security_config(U),data_extraction_rules(U),file_paths(U),backup_rules(U)];8^a,13^19^18^11^17^f^9^d,14^9^c^10,15^9^8,16^9^8,1c^1b^7^6^4^3^5^2^0^1;;;"/>
+    </map>
+
+</incidents>

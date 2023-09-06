@@ -1,0 +1,116 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.imagecapture"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="32" />
+9-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.CAMERA" />
+11-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:6:5-64
+11-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:6:22-62
+12    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+12-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:7:5-79
+12-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:7:22-77
+13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+13-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:8:5-80
+13-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:8:22-78
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:9:5-66
+14-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:9:22-64
+15
+16    <application
+16-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:10:5-44:19
+17        android:allowBackup="true"
+17-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:11:9-35
+18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+18-->[androidx.core:core:1.8.0] C:\Users\ujwal\.gradle\caches\transforms-3\0638d9dacb5fd10604e28ec2b4d3c80b\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
+19        android:dataExtractionRules="@xml/data_extraction_rules"
+19-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:12:9-65
+20        android:debuggable="true"
+21        android:fullBackupContent="@xml/backup_rules"
+21-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:13:9-54
+22        android:icon="@mipmap/ic_launcher"
+22-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:14:9-43
+23        android:label="@string/app_name"
+23-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:15:9-41
+24        android:networkSecurityConfig="@xml/network_security_config"
+24-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:19:9-69
+25        android:roundIcon="@mipmap/ic_launcher_round"
+25-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:16:9-54
+26        android:supportsRtl="true"
+26-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:17:9-35
+27        android:testOnly="true"
+28        android:theme="@style/Theme.ImageCapture"
+28-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:18:9-50
+29        android:usesCleartextTraffic="true" >
+29-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:20:9-44
+30        <activity
+30-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:22:9-24:40
+31            android:name="com.example.imagecapture.UploadImageActivity"
+31-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:23:13-48
+32            android:exported="false" />
+32-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:24:13-37
+33        <activity
+33-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:25:9-33:20
+34            android:name="com.example.imagecapture.MainActivity"
+34-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:26:13-41
+35            android:exported="true" >
+35-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:27:13-36
+36            <intent-filter>
+36-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:28:13-32:29
+37                <action android:name="android.intent.action.MAIN" />
+37-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:29:17-69
+37-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:29:25-66
+38
+39                <category android:name="android.intent.category.LAUNCHER" />
+39-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:31:17-77
+39-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:31:27-74
+40            </intent-filter>
+41        </activity>
+42
+43        <provider
+43-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:35:9-43:20
+44            android:name="androidx.core.content.FileProvider"
+44-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:36:13-62
+45            android:authorities="com.example.imagecapture.fileprovider"
+45-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:37:13-72
+46            android:exported="false"
+46-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:38:13-37
+47            android:grantUriPermissions="true" >
+47-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:39:13-47
+48            <meta-data
+48-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:40:13-42:64
+49                android:name="android.support.FILE_PROVIDER_PATHS"
+49-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:41:17-67
+50                android:resource="@xml/file_paths" />
+50-->C:\Personal\University\Sem-1\Mobile_computing\Project3\Android\app\src\main\AndroidManifest.xml:42:17-51
+51        </provider>
+52        <provider
+52-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ujwal\.gradle\caches\transforms-3\9f99c19470d8bf18ee15270d078c3173\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+53            android:name="androidx.startup.InitializationProvider"
+53-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ujwal\.gradle\caches\transforms-3\9f99c19470d8bf18ee15270d078c3173\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+54            android:authorities="com.example.imagecapture.androidx-startup"
+54-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ujwal\.gradle\caches\transforms-3\9f99c19470d8bf18ee15270d078c3173\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+55            android:exported="false" >
+55-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ujwal\.gradle\caches\transforms-3\9f99c19470d8bf18ee15270d078c3173\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+56            <meta-data
+56-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ujwal\.gradle\caches\transforms-3\9f99c19470d8bf18ee15270d078c3173\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+57                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+57-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ujwal\.gradle\caches\transforms-3\9f99c19470d8bf18ee15270d078c3173\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+58                android:value="androidx.startup" />
+58-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ujwal\.gradle\caches\transforms-3\9f99c19470d8bf18ee15270d078c3173\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+59            <meta-data
+59-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ujwal\.gradle\caches\transforms-3\a68586d9ac6fc4872d4884a947d1c1d5\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+60                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+60-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ujwal\.gradle\caches\transforms-3\a68586d9ac6fc4872d4884a947d1c1d5\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+61                android:value="androidx.startup" />
+61-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ujwal\.gradle\caches\transforms-3\a68586d9ac6fc4872d4884a947d1c1d5\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+62        </provider>
+63    </application>
+64
+65</manifest>

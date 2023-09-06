@@ -1,0 +1,32 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color purple_200
+color purple_500
+color purple_700
+color teal_200
+color teal_700
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id categories
+id categoryButton
+id imageView
+id imageViewUpload
+id nobutton
+id textView
+id uploadButton
+id yesButton
+layout activity_main
+layout activity_upload_image
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+string do_you_want_to_capture_an_image
+string no
+string yes
+style Theme.ImageCapture
+xml backup_rules
+xml data_extraction_rules
+xml file_paths
+xml network_security_config

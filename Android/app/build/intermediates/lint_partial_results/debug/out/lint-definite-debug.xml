@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 7.2.2" type="incidents">
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-attribute
+            description="Set contentDescription"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="contentDescription"
+            value="TODO"
+            dot="4"
+            mark="0"/>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="40"
+            column="6"
+            startOffset="1649"
+            endLine="40"
+            endColumn="15"
+            endOffset="1658"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Category&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="56"
+            column="9"
+            startOffset="2294"
+            endLine="56"
+            endColumn="32"
+            endOffset="2317"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-attribute
+            description="Set contentDescription"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="contentDescription"
+            value="TODO"
+            dot="4"
+            mark="0"/>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/activity_upload_image.xml"
+            line="9"
+            column="6"
+            startOffset="393"
+            endLine="9"
+            endColumn="15"
+            endOffset="402"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Categories&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/activity_upload_image.xml"
+            line="26"
+            column="9"
+            startOffset="1058"
+            endLine="26"
+            endColumn="48"
+            endOffset="1097"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Upload&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/activity_upload_image.xml"
+            line="35"
+            column="9"
+            startOffset="1430"
+            endLine="35"
+            endColumn="30"
+            endOffset="1451"/>
+    </incident>
+
+    <incident
+        id="InsecureBaseConfiguration"
+        severity="warning"
+        message="Insecure Base Configuration">
+        <fix-replace
+            description="Replace with false"
+            replacement="false">
+            <range
+                file="${:app*debug*sourceProvider*0*resDir*0}/xml/network_security_config.xml"
+                startOffset="111"
+                endOffset="115"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/xml/network_security_config.xml"
+            line="3"
+            column="45"
+            startOffset="111"
+            endLine="3"
+            endColumn="49"
+            endOffset="115"/>
+    </incident>
+
+    <incident
+        id="SimpleDateFormat"
+        severity="warning"
+        message="To get local formatting use `getDateInstance()`, `getDateTimeInstance()`, or `getTimeInstance()`, or use `new SimpleDateFormat(String template, Locale locale)` with for example `Locale.US` for ASCII dates.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/example/imagecapture/MainActivity.java"
+            line="125"
+            column="28"
+            startOffset="4399"
+            endLine="125"
+            endColumn="67"
+            endOffset="4438"/>
+    </incident>
+
+    <incident
+        id="SimpleDateFormat"
+        severity="warning"
+        message="To get local formatting use `getDateInstance()`, `getDateTimeInstance()`, or `getTimeInstance()`, or use `new SimpleDateFormat(String template, Locale locale)` with for example `Locale.US` for ASCII dates.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/example/imagecapture/UploadImageActivity.java"
+            line="93"
+            column="36"
+            startOffset="3387"
+            endLine="93"
+            endColumn="75"
+            endOffset="3426"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.appcompat:appcompat than 1.5.0 is available: 1.5.1">
+        <fix-replace
+            description="Change to 1.5.1"
+            family="Update versions"
+            oldString="1.5.0"
+            replacement="1.5.1"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="32"
+            column="20"
+            startOffset="702"
+            endLine="32"
+            endColumn="56"
+            endOffset="738"/>
+    </incident>
+
+</incidents>
